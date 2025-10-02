@@ -1,0 +1,18 @@
+# BAD Backend - GPU Runtime (CUDA 12.1, Ubuntu 22.04)
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv python3-dev build-essential curl \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.gpu.txt /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
+
+COPY app /app/app
+EXPOSE 8000

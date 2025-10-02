@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.gpu
+    container_name: bad-backend-gpu
+    env_file: .env
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./backend/app:/app/app:rw
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]
+    gpus: all
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend-agent:
+    build:
+      context: ./frontend-agent
+      dockerfile: Dockerfile
+    container_name: bad-frontend-agent
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - BACKEND_URL=http://backend:8000
+    volumes:
+      - ./frontend-agent:/app:rw
+    ports:
+      - "8501:8501"
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+
+  sales-site:
+    build:
+      context: ./sales-site
+      dockerfile: Dockerfile
+    container_name: bad-sales-site
+    ports:
+      - "8080:80"
+    volumes:
+      - ./sales-site/html:/usr/share/nginx/html:ro
+
+networks:
+  default:
+    name: bad-military-network
