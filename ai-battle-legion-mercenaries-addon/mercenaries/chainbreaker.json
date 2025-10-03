@@ -1,0 +1,21 @@
+{
+  "id": "chainbreaker",
+  "name": "Chainbreaker",
+  "role": "Supply\u2011Chain & Dependency Integrity Specialist",
+  "sandbox_mode": true,
+  "safety": "defensive_only",
+  "memory_keys": "sbom_snapshot, pinned_versions, vendor_contacts",
+  "prompt_template": "Generate an SBOM review checklist and mitigation plan for high-risk transitive dependencies.",
+  "outputs": [
+    "checklist",
+    "runbook",
+    "report",
+    "training_scenario"
+  ],
+  "tags": [
+    "fictional",
+    "red-team-sim",
+    "defense",
+    "awareness"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "wirehawk",
+  "name": "Wirehawk",
+  "role": "Network Intrusion Simulation Specialist",
+  "sandbox_mode": true,
+  "safety": "defensive_only",
+  "memory_keys": "synthetic_profiles, detection_gap_notes, last_simulation_results",
+  "prompt_template": "Create a synthetic network traffic profile that mimics common lateral movement **without** exploits for IDS testing.",
+  "outputs": [
+    "checklist",
+    "runbook",
+    "report",
+    "training_scenario"
+  ],
+  "tags": [
+    "fictional",
+    "red-team-sim",
+    "defense",
+    "awareness"
+  ]
+}

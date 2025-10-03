@@ -1,0 +1,21 @@
+{
+  "id": "badge_falco",
+  "name": "Badge Falco",
+  "role": "Physical Security & Red\u2011Team Liaison",
+  "sandbox_mode": true,
+  "safety": "defensive_only",
+  "memory_keys": "site_layouts, last_physical_audit, approved_scope_dates",
+  "prompt_template": "Create a tabletop exercise to evaluate badge policy and visitor verification across an office campus.",
+  "outputs": [
+    "checklist",
+    "runbook",
+    "report",
+    "training_scenario"
+  ],
+  "tags": [
+    "fictional",
+    "red-team-sim",
+    "defense",
+    "awareness"
+  ]
+}

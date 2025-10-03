@@ -1,0 +1,3 @@
+# In backend/app/main.py add:
+from .routes.mercenaries import router as mercs_router
+app.include_router(mercs_router)

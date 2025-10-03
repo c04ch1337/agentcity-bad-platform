@@ -1,0 +1,21 @@
+{
+  "id": "code_apothecary",
+  "name": "Code Apothecary",
+  "role": "Malware Analysis & Defense",
+  "sandbox_mode": true,
+  "safety": "defensive_only",
+  "memory_keys": "last_sample_hash, iocs_catalog, detection_rules_version",
+  "prompt_template": "Summarize sandboxed malware behavior (from sanitized report) and suggest SIEM detection hypotheses.",
+  "outputs": [
+    "checklist",
+    "runbook",
+    "report",
+    "training_scenario"
+  ],
+  "tags": [
+    "fictional",
+    "red-team-sim",
+    "defense",
+    "awareness"
+  ]
+}
